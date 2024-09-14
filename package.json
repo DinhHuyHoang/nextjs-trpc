@@ -6,19 +6,54 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "schema:generate": "npx prisma generate",
+    "schema:format": "npx prisma format",
+    "prisma:migrate:dev": "npx prisma migrate dev --skip-seed",
+    "prisma:migrate:dev:env": "dotenv -e .env.development.local -- sh -c 'pnpm run prisma:migrate:dev'",
+    "prisma:migrate:test:env": "dotenv -e .env.test.local -- sh -c 'pnpm run prisma:migrate:dev'",
+    "prisma:validate:dev:env": "dotenv -e .env.development.local -- sh -c 'npx prisma validate'",
+    "cmd:start:dev": "pnpm run prisma:migrate:dev && pnpm run dev"
+  },
+  "prisma": {
+    "seed": "ts-node --project tsconfig.seed.json --transpile-only prisma/seed/index.ts"
   },
   "dependencies": {
+    "@mantine/carousel": "^7.12.2",
+    "@mantine/core": "^7.12.2",
+    "@mantine/hooks": "^7.12.2",
+    "@prisma/client": "5.19.1",
+    "@tabler/icons-react": "^3.16.0",
+    "@tanstack/react-query": "^5.56.2",
+    "@tanstack/react-query-devtools": "^5.56.2",
+    "@trpc/client": "11.0.0-rc.502",
+    "@trpc/react-query": "11.0.0-rc.502",
+    "@trpc/server": "11.0.0-rc.502",
+    "@types/lodash": "^4.17.7",
+    "camelcase-keys": "^9.1.3",
+    "client-only": "^0.0.1",
+    "embla-carousel-react": "^7.1.0",
+    "lodash": "^4.17.21",
+    "next": "14.0.0",
     "react": "^18",
     "react-dom": "^18",
-    "next": "14.2.11"
+    "server-only": "^0.0.1",
+    "superjson": "^2.2.1",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
-    "typescript": "^5",
-    "@types/node": "^20",
+    "@types/node": "^20.16.5",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^8",
-    "eslint-config-next": "14.2.11"
+    "eslint-config-next": "14.0.0",
+    "eslint-config-prettier": "^9.1.0",
+    "postcss": "^8.4.45",
+    "postcss-preset-mantine": "^1.17.0",
+    "postcss-simple-vars": "^7.0.1",
+    "prettier": "^3.3.3",
+    "prisma": "5.19.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.2"
   }
 }

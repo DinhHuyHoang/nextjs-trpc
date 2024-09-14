@@ -1,0 +1,25 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+  seed     = "prisma db seed"
+}
+
+model Restaurant {
+  id          String  @id @default(uuid()) @map("id")
+  rating      Float   @map("rating")
+  ratingCount Int     @map("rating_count")
+  category    String  @map("category")
+  city        String  @map("city")
+  desc        String  @map("desc")
+  name        String  @map("name")
+  priceRange  String  @map("price_range")
+  images      Json    @map("images")
+  isFavorite  Boolean @map("is_favorite")
+  featured    Json    @map("featured")
+
+  @@map("restaurants")
+}
