@@ -6,6 +6,7 @@ datasource db {
 generator client {
   provider = "prisma-client-js"
   seed     = "prisma db seed"
+  // output   = "../../node_modules/.prisma/client"
 }
 
 model Restaurant {

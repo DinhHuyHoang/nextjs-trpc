@@ -23,8 +23,6 @@
       "@/db/*": ["./src/db/*"],
       "@/components/*": ["./src/app/_components/*"],
     },
-
-    "typeRoots": ["./node_modules/@types", "./global.d.ts"]
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]

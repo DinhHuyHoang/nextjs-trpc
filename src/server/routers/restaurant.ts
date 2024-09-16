@@ -3,6 +3,7 @@ import prisma from '@/db/prisma'
 import { z } from 'zod'
 
 import { Prisma } from '@prisma/client'
+import { prismaHelper } from '@/helpers/prismaHelper'
 
 type Featured = {
   text: string
@@ -19,8 +20,8 @@ async function getRestaurants(): Promise<Restaurant[]> {
 
   return restaurants.map((restaurant) => ({
     ...restaurant,
-    featured: typeof restaurant.featured === 'string' ? (JSON.parse(restaurant.featured) as unknown as Featured) : (restaurant.featured as Featured),
-    images: typeof restaurant.images === 'string' ? (JSON.parse(restaurant.images) as unknown as string[]) : (restaurant.images as unknown as string[]),
+    featured: prismaHelper<Featured>(restaurant.featured),
+    images: prismaHelper<string[]>(restaurant.images),
   }))
 }
 
