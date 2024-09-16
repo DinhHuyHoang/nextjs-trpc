@@ -42,6 +42,11 @@ DB_PASS=<REPLACE_ME>
 DB_NAME=<REPLACE_ME>
 ```
 
+```bash
+// create .env at the root folder
+DATABASE_URL=<REPLACE_ME>
+```
+
 ### 3. Setting up the Project
 
 ```bash
