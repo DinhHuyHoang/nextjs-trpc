@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Restaurant Demo Project
+
+This is a demo project for a restaurant web application using **Next.js**, **Prisma**, **tRPC**, **PostgreSQL**, and **Docker**. The project uses **pnpm** as the package manager.
+
+## Prerequisites
+
+- [pnpm](https://pnpm.io/installation)
+- [Docker](https://docs.docker.com/get-docker/)
+- [Node.js v20.9.0+](https://nodejs.org/en/download/)
+
+## Tech Stack
+
+- **Next.js** (with App Router)
+- **Prisma** (ORM)
+- **tRPC** (for typesafe APIs)
+- **PostgreSQL** (database)
+- **Docker** & **Docker Compose** (for containerization)
+- **SuperJSON** (for transforming data between server and client)
+- **pnpm** (for package management)
 
 ## Getting Started
 
-First, run the development server:
+### Make the wait-for-it.sh Script Executable
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+chmod +x scripts/wait-for-it.sh
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 1. Install Dependencies
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm install -g pnpm
+pnpm install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 2. Environment Variables
 
-## Learn More
+```bash
+// create .env in the folder /docker
+DB_USER=<REPLACE_ME>
+DB_PASS=<REPLACE_ME>
+DB_NAME=<REPLACE_ME>
+```
 
-To learn more about Next.js, take a look at the following resources:
+### 3. Setting up the Project
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+make setup
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 5. Running the Development Web Application
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+make next-dev
+```
