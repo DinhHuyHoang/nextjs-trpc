@@ -2,6 +2,12 @@
   "name": "nextjs-trpc",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=20.9.0"
+  },
+  "pnpm": {
+    "strict-engines": true
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -9,11 +15,14 @@
     "lint": "next lint",
     "schema:generate": "npx prisma generate",
     "schema:format": "npx prisma format",
+    "prisma:seed": "npx prisma db seed",
     "prisma:migrate:dev": "npx prisma migrate dev --skip-seed",
     "prisma:migrate:dev:env": "dotenv -e .env.development.local -- sh -c 'pnpm run prisma:migrate:dev'",
     "prisma:migrate:test:env": "dotenv -e .env.test.local -- sh -c 'pnpm run prisma:migrate:dev'",
     "prisma:validate:dev:env": "dotenv -e .env.development.local -- sh -c 'npx prisma validate'",
-    "cmd:start:dev": "pnpm run prisma:migrate:dev && pnpm run dev"
+    "cmd:start:dev": "pnpm run prisma:migrate:dev && pnpm run dev",
+    "prisma:migrate:prod": "npx prisma migrate deploy",
+    "cmd:start:prod": "pnpm run prisma:migrate:prod && pnpm run prisma:seed && pnpm run start"
   },
   "prisma": {
     "seed": "ts-node --project tsconfig.seed.json --transpile-only prisma/seed/index.ts"

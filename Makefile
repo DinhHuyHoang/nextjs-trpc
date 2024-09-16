@@ -1,4 +1,4 @@
-DOCKER_COMPOSE_FILE = .docker-compose.yml
+DOCKER_COMPOSE_FILE = ./docker/local/.docker-compose.yml
 PROJECT_NAME = nextjs-trpc
 
 # Command for running docker compose
@@ -25,6 +25,8 @@ start: docker-up prisma-setup
 docker-up:
 	@echo "Starting Docker containers..."
 	$(DC_UP)
+	@echo "Waiting for PostgreSQL to be ready..."
+	@./scripts/wait-for-it.sh db:5432 -- echo "PostgreSQL is up and ready"
 
 # Tear down Docker containers
 docker-down:
@@ -32,8 +34,10 @@ docker-down:
 	$(DC_DOWN)
 
 # Build the Docker image for the Next.js app
-# docker build -t ${PROJECT_NAME} .
 docker-build:
+	docker build -t ${PROJECT_NAME} .
+
+docker-build-nocache:
 	docker build --no-cache -t ${PROJECT_NAME} .
 
 # Set up Prisma
@@ -43,7 +47,7 @@ prisma-setup:
 	$(PRISMA_MIGRATE)
 
 # Seed the database
-seed:
+prisma-seed: prisma-setup
 	@echo "Seeding the database..."
 	$(PRISMA_SEED)
 
