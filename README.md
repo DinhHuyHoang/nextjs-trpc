@@ -59,4 +59,4 @@ make setup
 make next-dev
 ```
 
-[Watch the video](./assets/nextjs-trpc.mp4)
+[Watch the video](./assets/nextjs-trpc.gif)
