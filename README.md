@@ -58,3 +58,5 @@ make setup
 ```bash
 make next-dev
 ```
+
+[Watch the video](./assets/nextjs-trpc.mp4)
